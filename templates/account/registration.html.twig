@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Inscription{% endblock %}
+{#
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha256-siyOpF/pBWUPgIcQi17TLBkjvNgNQArcmwJB8YvkAgg=" crossorigin="anonymous" />
+{% endblock %}
+#}
+{% block body %}
+
+    <div class="container">
+        <h1 class="my-5">Inscrivez vous sur WebForceLife</h1>
+
+        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2 class="heading">Informations générales</h2>
+                    <hr>
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.lastName) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.picture) }}
+                </div>
+
+                 <div class="alert alert-light">
+                    <h2 class="alert-heading">Mot de passe</h2>
+                    <hr>
+                    {{ form_row(form.hash) }}
+                    {{ form_row(form.passwordConfirm) }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2 class="heading">Détails</h2>
+                    <hr>
+                    {{ form_row(form.birthAt) }}
+                    {{ form_row(form.phone) }}
+                    <hr>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-check"></i>
+                        Confirmez l'inscription
+                    </button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+        
+    </div>
+
+{% endblock %}
+{#
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha256-bqVeqGdJ7h/lYPq6xrPv/YGzMEb6dNxlfiTUHSgRCp8=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('#registration_birthAt').datepicker({
+                changeYear: true,
+                changeMonth: true,
+                format: 'dd/mm/yyyy',
+            });
+        })
+    </script>
+{% endblock %}
+#}

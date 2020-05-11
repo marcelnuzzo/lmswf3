@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modification du profil utilisateur{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="my-5">Modifier mon profil</h1>
+
+        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2 class="heading">Détails</h2>
+                    <hr>
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.lastName) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.picture) }}
+                    {{ form_row(form.birthAt) }}
+                    {{ form_row(form.phone) }}
+                    <hr>
+                    <p>Si vous avez terminé vos modifications, vous pouvez les sauvegarder</p>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-check"></i>
+                        Enregistrer les modifications
+                    </button>
+                </div>
+            </div>
+            <div class="col">
+                <h2 class="heading">Photo de profil de {{ app.user.fullname }}</h2>
+                <hr>
+                <img src="/allImages/032.jpg" alt="" width="200" heigth="auto">
+            </div>
+        </div>
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

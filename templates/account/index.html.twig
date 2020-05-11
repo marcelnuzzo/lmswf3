@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de {{ user.fullName }}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row mt-3">
+        <h1>Profil</h1>
+        <div class="bouton">
+        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <div class="card bg-light">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        <i class="fa fa-info" aria-hidden="true"></i>&nbsp;
+                        Informations personnelles
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <i class="fa fa-user" aria-hidden="true">&nbsp;</i>
+                            <strong>Prénom : </strong>{{ user.firstname }}
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fa fa-user" aria-hidden="true">&nbsp;</i>
+                            <strong>Nom : </strong>{{ user.lastname }}
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fa fa-birthday-cake" aria-hidden="true">&nbsp;</i>
+                            <strong>Date de naissance : </strong>{{ user.birthAt | date("d/m/Y") }}
+                        </li>
+                        <hr class="divider">
+                        <li class="list-group-item">
+                            <form action="/action_page.php">
+                                <div class="form-group">
+                                    <i class="fa fa-envelope" aria-hidden="true">&nbsp;</i>
+                                    <label for="email"><strong>Email : </strong> {{ user.email }}</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Entrez votre email" value="{{ user.email }}">
+                                </div>
+                                <div class="form-group">
+                                    <i class="fa fa-phone" aria-hidden="true">&nbsp;</i>
+                                    <label for="phone"><strong>Tél : </strong>{{ user.phone }}</label>
+                                    <input type="text" class="form-control" id="phone" placeholder="Entrez votre téléphone" value="{{ user.phone }}">
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h2 class="card-title">Photo de profil de : <br>{{ app.user.fullname }}</h2>
+                    <img src="/allImages/032.jpg" alt="text" title="photo de {{ app.user.fullname }}" width="250" height="auto">
+                    <button type="button" class="btn btn-primary mt-2">
+                        Charger une photo
+                    </button> 
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+{% endblock %}

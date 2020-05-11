@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Quiz utilisateur{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Quiz</h1>
+    <div class="row">
+    <div class="col"></div>
+    <div class="col">
+    <div class="card bg-light mt-3">
+        <div class="card-body">
+            {{ form_start(form) }}
+            {{ question1.label }}<br>
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="card bg-light mt-3">
+        <div class="card-body">
+        {{ form_start(form2) }}
+        {{ question2.label }}<br>
+        {{ form_widget(form2) }}
+        {{ form_end(form2) }}
+        </div>
+    </div>
+    </div>
+    <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Bienvenue sur LMS WF3 !{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet"  href="{{ asset('css/app.css') }}"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="{{ path("homepage") }}">LMS-WF3</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path("homepage") }}">Acueil<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Matières</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Leçons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path("question_index") }}">Questions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path("answer_index") }}">Réponses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path("home_quiz") }}">Liste des bonnes réponses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path("home_quizUser") }}">Quiz non lié</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path("home_userQuiz") }}">Quiz lié</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        {% if app.user %}
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="accountDopdownLink">
+                                <img src="{{ app.user.picture }}" alt="Avatar de {{app.user.firstname}}">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-rigth" aria-labelledby="accountDopdownLink">
+                                <a href="{{ path('account_index') }}" class="dropdown-item">Mon profil</a>
+                                <a href="{{ path('account_profileEdit') }}" class="dropdown-item">Modifier mon profil</a>
+                                <a href="{{ path('account_password') }}" class="dropdown-item">Modifier mon mot de passe</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ path('account_logout') }}" class="dropdown-item">Déconnexion</a>
+                            </div>
+                        </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{{ path('account_register') }}" class="nav-link">Inscription</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ path('account_login') }}" class="nav-link">Connexion</a>
+                            </li>
+                        {% endif %}
+                    </ul>       
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <div class="vertical-nav menunav" id="sidebar">
+                    <ul class="nav flex-column bg-white mb-0">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">
+                                <i class="fa fa-th-large mr-3 text-primary fa-info"></i>
+                                Info personnel
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">
+                                <i class="fa fa-address-card mr-3 text-primary fa-info"></i>
+                                Compétences
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">
+                                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                                Documents
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dar">
+                                <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                                Expériences
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">
+                                <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+                                Formations
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">
+                                <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
+                                Centres d'intérêts
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-dark">
+                                <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
+                                Confidentialité
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('account_password') }}" class="nav-link text-dark">
+                                <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
+                                Mot de passe
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav flex-column mb-0">
+                        <li class="nav-item">
+                        <a href="#" class="nav-link text-dark font-italic">
+                                    <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
+                                    Area charts
+                                </a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="#" class="nav-link text-dark font-italic">
+                                    <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+                                    Bar charts
+                                </a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="#" class="nav-link text-dark font-italic">
+                                    <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
+                                    Pie charts
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-10">
+                {% for label, messages in app.flashes %}
+                    <div class="container">
+                        <div class="alert alert-{{ label }}">
+                            {% for message in messages %}
+                                <p>{{ message | raw }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+<!-- End vertical navbar -->
+
+</div>
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
