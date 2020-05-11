@@ -33,6 +33,7 @@ class AppFixtures extends Fixture
                 ->setPicture('https://lh3.googleusercontent.com/a-/AOh14Giy3pomEF4DFzKVvYb03_ATPsjRYypTILMxlnD_=s60-cc-rg')
                 ->setEmail("nuzzo.marcel@aliceadsl.fr")
                 ->setHash($this->encoder->encodePassword($adminUser, '1234'))
+                ->setOkquiz(false)
                 ->addUserRole($adminRole);
        
         $manager->persist($adminUser);

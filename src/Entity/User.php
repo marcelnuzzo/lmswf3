@@ -74,6 +74,11 @@ class User implements UserInterface
      */
     public $passwordConfirm;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $okquiz;
+
     public function getFullName() {
         return "{$this->firstname} {$this->lastname}";
     }
@@ -222,5 +227,17 @@ class User implements UserInterface
     }
 
     public function eraseCredentials() {}
+
+    public function getOkquiz(): ?bool
+    {
+        return $this->okquiz;
+    }
+
+    public function setOkquiz(bool $okquiz): self
+    {
+        $this->okquiz = $okquiz;
+
+        return $this;
+    }
 
 }

@@ -28,6 +28,7 @@ class RegistrationType extends ApplicationType
             ->add('passwordConfirm', PasswordType::class, $this->getConfiguration('Confirmation de mot de passe', "Veuillez confirmer votre mot de passe"))
             ->add('birthAt', DateType::class, $this->getConfiguration("Date de naissance", "Donner votre date de naissance", ["widget" => "single_text"]))
             ->add('phone', TextType::class, $this->getConfiguration("Numéro de téléphone", "Donner votre numéro de téléphone"))
+            
         ;
     }
 

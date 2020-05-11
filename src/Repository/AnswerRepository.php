@@ -22,12 +22,12 @@ class AnswerRepository extends ServiceEntityRepository
     // /**
     //  * @return Answer[] Returns an array of Answer objects
     //  */
-    public function findByCorrection($idQuestion)
+    public function findByCorrection($question)
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.correction = :val')
             ->andWhere('a.questions = :idQuestion')
-            ->setParameter('idQuestion', $idQuestion)
+            ->setParameter('idQuestion', $question)
             ->setParameter('val', true)
             ->getQuery()
             ->getResult()

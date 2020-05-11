@@ -6,7 +6,9 @@
 
 <div class="container mt-3">
 <h1>Quiz</h1>
-{{ count }} bonne(s) réponses.
+{% if toto != true %}
+{#{{ count }} bonne(s) réponses.#}
+<p>Combien font 2 X 1</p>
 {{ form_start(form) }}
 
 {{ form_widget(form) }}
@@ -16,6 +18,9 @@
 </button>
 
 {{ form_end(form) }}
+{% else %}
+    <h2>Vous avez bien répondu, le quiz est fini !</h2>
+{% endif %}
 </div>
 
 {% endblock %}

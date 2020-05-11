@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Qcm;
+use App\Entity\User;
 use App\Form\QcmType;
 use App\Entity\Answer;
 use App\Form\QuizType;
 use App\Form\Quiz2Type;
 use App\Form\Quiz3Type;
 use App\Repository\QcmRepository;
+use App\Repository\UserRepository;
 use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -67,23 +69,31 @@ class HomeController extends AbstractController
     /**
      * @Route("/userQuiz", name="home_userQuiz")
      */
-    public function userQuiz(Request $request, EntityManagerInterface $manager, AnswerRepository $repo)
+    public function userQuiz(Request $request, EntityManagerInterface $manager, AnswerRepository $repo, QuestionRepository $questionRepo, UserRepository $userRepo)
     {
+        
+        
+        $question = $questionRepo->find(1)->getId(); 
         $answer = new Answer();
         $form = $this->createForm(Quiz3Type::class, $answer);
         $form->handleRequest($request);
 
         $count = 0;
+        $user = $this->getUser()->getId();               
+        $user = $userRepo->find($user);
+        $toto = $user->getOkquiz();
         if($form->isSubmitted() && $form->isValid()) {
             
-            $idQuestion = $answer->getQuestions();
-            $correction = $repo->findByCorrection($idQuestion);
+            $correction = $repo->findByCorrection($question);
             $correction = $correction[0]->getId();
             
             $idProposition = $answer->getProposition();
-            //dd($idQuestion);
             
             if($correction == $idProposition){
+                
+                $user->setOkquiz(true);
+                $manager->persist($user);
+                $manager->flush();
                 $count++;  
                 $this->addFlash(
                     'success',
@@ -101,7 +111,9 @@ class HomeController extends AbstractController
 
         return $this->render('home/userQuiz.html.twig', [
             'form' => $form->createView(),
-            'count' => $count
+            'count' => $count,
+            'toto' => $toto
+            //'user' => $user->getOkquiz(),
         ]);
     }
 }

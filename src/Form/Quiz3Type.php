@@ -22,10 +22,6 @@ class Quiz3Type extends AbstractType
             
         $builder
             
-            ->add('questions', EntityType::class, [
-                'class' => Question::class,
-                'choice_label' => 'label',
-            ])
             ->add('proposition', ChoiceType::class, [
                 'choices' => [
                     '2 X 1 = 1' => '1',

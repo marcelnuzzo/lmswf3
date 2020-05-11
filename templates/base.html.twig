@@ -23,32 +23,25 @@
                             <a class="nav-link" href="{{ path("homepage") }}">Acueil<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Matières</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Leçons</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ path("question_index") }}">Questions</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path("answer_index") }}">Réponses</a>
                         </li>
+                        {% if app.user %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path("home_quiz") }}">Liste des bonnes réponses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path("home_quizUser") }}">Quiz non lié</a>
+                            <a class="nav-link" href="{{ path("home_userQuiz") }}">Quiz</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path("home_userQuiz") }}">Quiz lié</a>
-                        </li>
+                        {% endif %}
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         {% if app.user %}
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="accountDopdownLink">
-                                <img src="{{ app.user.picture }}" alt="Avatar de {{app.user.firstname}}">
+                                <img src="{{ app.user.picture }}" alt="Avatar de {{app.user.firstname}}" width="24px" height="auto">
                             </a>
                             <div class="dropdown-menu dropdown-menu-rigth" aria-labelledby="accountDopdownLink">
                                 <a href="{{ path('account_index') }}" class="dropdown-item">Mon profil</a>
@@ -100,7 +93,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-dar">
+                            <a href="#" class="nav-link text-dark">
                                 <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
                                 Expériences
                             </a>
