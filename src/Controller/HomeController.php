@@ -81,12 +81,11 @@ class HomeController extends AbstractController
         $count = 0;
         $user = $this->getUser()->getId();               
         $user = $userRepo->find($user);
-        $toto = $user->getOkquiz();
+        $user = $user->getOkquiz();
         if($form->isSubmitted() && $form->isValid()) {
             
             $correction = $repo->findByCorrection($question);
-            $correction = $correction[0]->getId();
-            
+            $correction = $correction[0]->getId();          
             $idProposition = $answer->getProposition();
             
             if($correction == $idProposition){
@@ -112,8 +111,7 @@ class HomeController extends AbstractController
         return $this->render('home/userQuiz.html.twig', [
             'form' => $form->createView(),
             'count' => $count,
-            'toto' => $toto
-            //'user' => $user->getOkquiz(),
+            'user' => $user
         ]);
     }
 }
