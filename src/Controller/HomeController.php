@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+//require '/vendor/autoload.php';
 
 use App\Entity\Qcm;
 use App\Entity\User;
@@ -19,6 +20,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Reader\IReader;
 
 
 class HomeController extends AbstractController
@@ -72,6 +77,20 @@ class HomeController extends AbstractController
     public function userQuiz(Request $request, EntityManagerInterface $manager, AnswerRepository $repo, QuestionRepository $questionRepo, UserRepository $userRepo)
     {
         
+        /*
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Hello World !');
+        $writer = new Xlsx($spreadsheet);         
+        $writer->save('C:\\wamp64\www\bonjour.xlsx');
+        */
+
+        /*
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $spreadsheet = $reader->load("C:\\wamp64\www\bonjour.xlsx");
+        $sheet = $spreadsheet->getActiveSheet();
+        $x= $sheet->getCell('A1')->getValue();
+        */
         
         $question = $questionRepo->find(1)->getId(); 
         $answer = new Answer();
