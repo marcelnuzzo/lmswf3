@@ -77,21 +77,6 @@ class HomeController extends AbstractController
     public function userQuiz(Request $request, EntityManagerInterface $manager, AnswerRepository $repo, QuestionRepository $questionRepo, UserRepository $userRepo)
     {
         
-        /*
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Hello World !');
-        $writer = new Xlsx($spreadsheet);         
-        $writer->save('C:\\wamp64\www\bonjour.xlsx');
-        */
-
-        /*
-        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-        $spreadsheet = $reader->load("C:\\wamp64\www\bonjour.xlsx");
-        $sheet = $spreadsheet->getActiveSheet();
-        $x= $sheet->getCell('A1')->getValue();
-        */
-        
         $question = $questionRepo->find(1)->getId(); 
         $answer = new Answer();
         $form = $this->createForm(Quiz3Type::class, $answer);
