@@ -7,6 +7,7 @@ use App\Entity\Qcm;
 use App\Entity\User;
 use App\Form\QcmType;
 use App\Entity\Answer;
+use App\Form\LoadType;
 use App\Form\QuizType;
 use App\Form\Quiz2Type;
 use App\Form\Quiz3Type;
@@ -77,21 +78,6 @@ class HomeController extends AbstractController
     public function userQuiz(Request $request, EntityManagerInterface $manager, AnswerRepository $repo, QuestionRepository $questionRepo, UserRepository $userRepo)
     {
         
-        /*
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Hello World !');
-        $writer = new Xlsx($spreadsheet);         
-        $writer->save('C:\\wamp64\www\bonjour.xlsx');
-        */
-
-        /*
-        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-        $spreadsheet = $reader->load("C:\\wamp64\www\bonjour.xlsx");
-        $sheet = $spreadsheet->getActiveSheet();
-        $x= $sheet->getCell('A1')->getValue();
-        */
-        
         $question = $questionRepo->find(1)->getId(); 
         $answer = new Answer();
         $form = $this->createForm(Quiz3Type::class, $answer);
@@ -132,5 +118,23 @@ class HomeController extends AbstractController
             'count' => $count,
             'user' => $user
         ]);
+    }
+
+    /**
+     * @Route("load", name="testquiz_load")
+     */
+    public function loadform(Request $request) 
+    {
+        $form = $this->createForm(LoadType::class);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()) {
+            $form->getData();
+            dd($form);
+        }
+        return $this->render('testquiz/load.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
     }
 }
