@@ -7,6 +7,7 @@ use App\Entity\Qcm;
 use App\Entity\User;
 use App\Form\QcmType;
 use App\Entity\Answer;
+use App\Form\LoadType;
 use App\Form\QuizType;
 use App\Form\Quiz2Type;
 use App\Form\Quiz3Type;
@@ -85,12 +86,11 @@ class HomeController extends AbstractController
         $count = 0;
         $user = $this->getUser()->getId();               
         $user = $userRepo->find($user);
-        $toto = $user->getOkquiz();
+        $user = $user->getOkquiz();
         if($form->isSubmitted() && $form->isValid()) {
             
             $correction = $repo->findByCorrection($question);
-            $correction = $correction[0]->getId();
-            
+            $correction = $correction[0]->getId();          
             $idProposition = $answer->getProposition();
             
             if($correction == $idProposition){
@@ -116,8 +116,25 @@ class HomeController extends AbstractController
         return $this->render('home/userQuiz.html.twig', [
             'form' => $form->createView(),
             'count' => $count,
-            'toto' => $toto
-            //'user' => $user->getOkquiz(),
+            'user' => $user
         ]);
+    }
+
+    /**
+     * @Route("load", name="testquiz_load")
+     */
+    public function loadform(Request $request) 
+    {
+        $form = $this->createForm(LoadType::class);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()) {
+            $form->getData();
+            dd($form);
+        }
+        return $this->render('testquiz/load.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
     }
 }
