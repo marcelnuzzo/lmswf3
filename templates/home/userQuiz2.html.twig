@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block body %}
+{% if ok == false %}
+{{ form_start(form) }}
+
+{{ form_widget(form) }}
+
+<button class="btn btn-primary" type="submit">
+    Valider
+</button>
+
+{{ form_end(form) }}
+{% else %}
+    <div class="hide">
+    <h2>Vous avez bien répondu au quiz, c'est fini !</h2>
+    <a href="{{ path("home_raz") }}" class="btn btn-info">Recommencer</a>
+    </div>
+{% endif %}
+{% endblock %}

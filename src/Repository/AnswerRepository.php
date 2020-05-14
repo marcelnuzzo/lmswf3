@@ -34,6 +34,35 @@ class AnswerRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findByProposition()
+    {
+        return $this->createQueryBuilder('a')
+                    ->andWhere('a.questions = :val')
+                    ->setParameter('val', 1)
+                    ->getQuery()
+                    ->getResult()
+            ;
+    }
+
+    public function findProposition()
+    {
+        
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT proposition FROM answer
+            WHERE answer.questions_id=1
+            
+            ';
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            // returns an array of arrays (i.e. a raw data set)
+            return $stmt->fetchAll();
+
+    }
+
     // /**
     //  * @return Answer[] Returns an array of Answer objects
     //  */
