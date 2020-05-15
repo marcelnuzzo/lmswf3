@@ -86,7 +86,7 @@ class HomeController extends AbstractController
         $count = 0;
         $user = $this->getUser()->getId();               
         $user = $userRepo->find($user);
-        $user = $user->getOkquiz();
+        //$user = $user->getOkquiz();
         if($form->isSubmitted() && $form->isValid()) {
             
             $correction = $repo->findByCorrection($question);
@@ -137,4 +137,5 @@ class HomeController extends AbstractController
         ]);
 
     }
+
 }
