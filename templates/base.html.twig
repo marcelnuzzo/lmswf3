@@ -6,11 +6,12 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet"  href="{{ asset('css/app.css') }}"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/cjs/popper.min.js"></script>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-    <div class="container-fluid">
-        <div class="row">
+   
+        
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                 <a class="navbar-brand" href="{{ path("homepage") }}">LMS-WF3</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,13 +37,7 @@
                             <a class="nav-link" href="{{ path("home_userQuiz") }}">Quiz</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">testquiz</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ path("testquiz_load") }}">Chargement Excel</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path("home_test") }}">Test</a>
                         </li>
                         {% endif %}
                     </ul>
@@ -76,9 +71,9 @@
                     
                 </div>
             </nav>
-        </div>
-    </div>
-    <div class="container">
+        
+    {#
+    < class="container">
         <div class="row">
             <div class="col-2">
                 <div class="vertical-nav menunav" id="sidebar">
@@ -155,6 +150,11 @@
                 </div>
             </div>
             <div class="col-10">
+                
+            </div>
+        </div>
+        #}
+<!-- End vertical navbar -->
                 {% for label, messages in app.flashes %}
                     <div class="container">
                         <div class="alert alert-{{ label }}">
@@ -165,11 +165,6 @@
                     </div>
                 {% endfor %}
                 {% block body %}{% endblock %}
-            </div>
-        </div>
-<!-- End vertical navbar -->
-
-</div>
 
         <script src="/js/jquery.min.js"></script>
         <script src="/js/popper.min.js"></script>
