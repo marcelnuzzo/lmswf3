@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Test chargement{% endblock %}
+
+{% block body %}
+
+<h1>Salut</h1>
+<article>
+          
+ 
+            
+            <ul>
+                {% for l in liste %}
+                    <li> {{l}} </li>
+                {% endfor %}
+            </ul>
+ 
+        </article>
+
+{% endblock %}

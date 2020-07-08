@@ -3,6 +3,7 @@
 {% block title %}Quiz{% endblock %}
 
 {% block body %}
+<div class="container">
 {% if ok == false %}
 {{ form_start(form) }}
 
@@ -19,4 +20,5 @@
     <a href="{{ path("home_raz") }}" class="btn btn-info">Recommencer</a>
     </div>
 {% endif %}
+</div>
 {% endblock %}

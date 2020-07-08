@@ -80,10 +80,22 @@ class HomeController extends AbstractController
      */
     public function userQuiz(Request $request, EntityManagerInterface $manager, AnswerRepository $repo, QuestionRepository $questionRepo, UserRepository $userRepo)
     {
+        $question = $questionRepo->findFirstId()[0]['id'];
+        $id = $question;
+        //dd($id);
+        $tabPropo = [];
+        for($i=0; $i<3; $i++) {
+            $answers = $repo->findPropo($id)[$i];
+            $answers = $answers['proposition'];
+            $tabPropo[] = $answers;
+        }
         
-        $question = $questionRepo->find(1)->getId(); 
+        //dd($toto);
         $answer = new Answer();
-        $form = $this->createForm(Quiz4Type::class, $answer);
+        $form = $this->createForm(Quiz4Type::class, $answer, [
+            'question' => $question,
+            'tabPropo' => $tabPropo,
+        ]);
         $form->handleRequest($request);
 
         $count = 0;
@@ -131,6 +143,7 @@ class HomeController extends AbstractController
             'questions' => $questionRepo->findAll(),
         ]);
     }
+
 
     /**
      * @Route("load", name="testquiz_load")

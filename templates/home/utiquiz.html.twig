@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Uti quiz{% endblock %}
+
+{% block body %}
+
+{{ allQuestions }}
+{% for question in questions %}
+    {{ question.label }}
+{% endfor %}
+
+
+
+{% endblock %}

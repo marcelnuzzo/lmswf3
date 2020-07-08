@@ -19,6 +19,33 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    public function findByLabel()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT label FROM question
+            
+            ';
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            // returns an array of arrays (i.e. a raw data set)
+            return $stmt->fetchAll();
+    }
+
+    public function findFirstId ()
+    {
+        return $this->createQueryBuilder('q')
+                    ->select('q.id')
+                    ->orderBy('q.id', 'ASC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getResult()
+                    ;
+    }
+
     // /**
     //  * @return Question[] Returns an array of Question objects
     //  */

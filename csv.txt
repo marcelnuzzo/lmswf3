@@ -1,0 +1,7 @@
+Marcel, on va faire un point cet aprèm ou demain
+Je veux que tu te focalises maintenant sur le chargement d’un quizz depuis un fichier (Excel, CSV)
+L’objectif c’est qu’on puisse ajouter n’importe quel type de question (choix unique, choix multiple, texte, chiffres, etc.)
+Mais aussi des images dans la question, une partie code
+Le premier cas d’usage si on y arrive sera je penses des quizz pour mieux connaître l’accessibilité
+En tapant Quizz Excel sur Google tu peux en trouver plein pour tester
+Idéalement on chargera le quizz en entier sur le navigateur depuis le serveur et le reste sera fait en JS
